@@ -30,6 +30,10 @@ echo Запуск PyInstaller (x86)...
     --collect-all xlutils ^
     --collect-all olefile ^
     --collect-all striprtf ^
+    --exclude-module pandas ^
+    --exclude-module scipy ^
+    --exclude-module sklearn ^
+    --exclude-module matplotlib ^
     main.py
 
 echo.

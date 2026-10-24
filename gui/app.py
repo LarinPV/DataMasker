@@ -41,7 +41,7 @@ class DataMaskerApp(ctk.CTk):
 
         # Создание вкладок
         self.tabview = ctk.CTkTabview(self)
-        self.tabview.pack(padx=20, pady=(10, 20), fill="both", expand=True)
+        self.tabview.pack(padx=20, pady=(10, 5), fill="both", expand=True)
 
         self.tab_mask = self.tabview.add("  Обезличить документы  ")
         self.tab_restore = self.tabview.add("  Восстановить документы  ")
@@ -50,6 +50,37 @@ class DataMaskerApp(ctk.CTk):
         self._build_mask_tab()
         self._build_restore_tab()
         self._build_settings_tab()
+        self._build_footer()
+
+    def _build_footer(self):
+        """Нижняя панель (футер) с информацией и ссылкой на GitHub разработчика."""
+        footer = ctk.CTkFrame(self, fg_color="transparent")
+        footer.pack(fill="x", padx=20, pady=(0, 8))
+
+        ctk.CTkLabel(
+            footer,
+            text="DataMasker • 100% Offline",
+            font=ctk.CTkFont(size=11),
+            text_color="gray60"
+        ).pack(side="left")
+
+        github_btn = ctk.CTkLabel(
+            footer,
+            text="GitHub: LarinPV",
+            font=ctk.CTkFont(size=11, underline=True),
+            text_color=("#1f6aa5", "#4da8da"),
+            cursor="hand2"
+        )
+        github_btn.pack(side="right")
+        github_btn.bind("<Button-1>", lambda e: self._open_github())
+
+    def _open_github(self):
+        """Открывает страницу GitHub в браузере по умолчанию."""
+        import webbrowser
+        try:
+            webbrowser.open_new_tab("https://github.com/LarinPV")
+        except Exception:
+            pass
 
     # =========================================================================
     # ВКЛАДКА 1: ОБЕЗЛИЧИВАНИЕ
